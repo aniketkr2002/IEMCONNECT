@@ -19,7 +19,7 @@ import com.iemconnect.studentlog.service.ProductService;
 
 
 @RestController
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/")
 public class LoginController {
 	@Autowired
 	ProductService productService;

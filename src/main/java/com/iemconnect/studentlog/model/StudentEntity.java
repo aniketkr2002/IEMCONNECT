@@ -189,10 +189,20 @@ public class StudentEntity {
 	
 	@Override
 	public String toString() {
-		return "StudentEntity [studentId=" + studentId + ", userName=" + userName + ", name=" + name + ", email="
-				+ email + ", curryear=" + curryear + ", semester=" + semester + ", createdAt=" + createdAt
-				+ ", createdBy=" + createdBy + ", lastUpdatedAt=" + lastUpdatedAt + ", lastUpdatedBy=" + lastUpdatedBy
-				+ ", phone=" + phone + ", enrollment=" + enrollment + ", branch=" + branch + ", password=" + password
+		return "StudentEntity [studentId=" + studentId +
+				", userName=" + userName +
+				", name=" + name + 
+				", email="+ email +
+				", curryear=" + curryear +
+				", semester=" + semester + 
+				", createdAt=" + createdAt
+				+ ", createdBy=" + createdBy +
+				", lastUpdatedAt=" + lastUpdatedAt + 
+				", lastUpdatedBy=" + lastUpdatedBy
+				+ ", phone=" + phone +
+				", enrollment=" + enrollment +
+				", branch=" + branch +
+				", password=" + password
 				+ "]";
 	}
 }

@@ -19,7 +19,7 @@ public class CollegeController {
 	private CollegeService collegeService;
 
 	@GetMapping("/getAllStudent")
-	public Iterable<College> getEnrollmment(){
+	public Iterable<College> allCollegeStundet(){
 		return collegeService.findAllStudent();
 	}
 	

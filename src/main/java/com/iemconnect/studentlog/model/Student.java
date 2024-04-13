@@ -137,8 +137,13 @@ public class Student {
 	
 	@Override
 	public String toString() {
-		return "Student [ name=" + name + ", email=" + email + ", year=" + curryear
-				+ ", semester=" + semester + ", phone=" + phone + ", enrollment=" + enrollment + ", branch=" + branch
+		return "Student [ name=" + name + ", "
+				+ "email=" + email + 
+				", year=" + curryear
+				+ ", semester=" + semester + 
+				", phone=" + phone + 
+				", enrollment=" + enrollment +
+				", branch=" + branch
 				+ ", password=" + password + "]";
 	}
 	

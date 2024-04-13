@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.iemconnect.studentlog.dao.StudentDao;
 import com.iemconnect.studentlog.exception.UserAlreadyResisteredException;
 import com.iemconnect.studentlog.exception.UserNotFoundCustomException;
+import com.iemconnect.studentlog.model.College;
 import com.iemconnect.studentlog.model.Student;
 import com.iemconnect.studentlog.model.StudentEntity;
 import com.iemconnect.studentlog.validation.RegistrationValidate;
@@ -24,6 +25,9 @@ public class StudentService {
 	StudentValidate studentValidate;
 	@Autowired 
 	RegistrationValidate registrationValidate;
+	
+	public Iterable<StudentEntity> findAllStudent() {
+		return studentDao.findAll(); }
 
 	public StudentEntity createStudent(Student studentBean) throws UserNotFoundCustomException {
 
@@ -62,17 +66,18 @@ public class StudentService {
 		student.setPassword(studentBean.getPassword());
 	}
 		
-	public boolean authenticate(String username, String password) {
+	public StudentEntity authenticate(String username, String password) {
         // Retrieve the user from the database based on the provided username
-        Optional<StudentEntity> optionalUser = studentDao.findByEnrollmentIgnoreCase(username);
+		Optional<StudentEntity> optionalUser = studentDao.findByEmailIgnoreCase(username);
 
         // Check if the user exists and if the password matches
         if (optionalUser.isPresent()) {
             StudentEntity user = optionalUser.get();
-            return user.getPassword().equals(password);
-        } else {
-            return false; // User not found
+            if (user.getPassword().equals(password)) {
+                return user; // Authentication successful
+            }
         }
+        return null;
     }
 	
 	
