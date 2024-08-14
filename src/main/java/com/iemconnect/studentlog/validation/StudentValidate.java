@@ -22,7 +22,7 @@ public class StudentValidate {
 			throw new UserNotFoundCustomException("student not found for enrollment: " + enrollment);
 		}
 		if(college2==null) {
-			throw new UserNotFoundCustomException("college email not found for this student: " + email + enrollment);
+			throw new UserNotFoundCustomException("college email not found for this student: " + email);
 
 		}
 	}

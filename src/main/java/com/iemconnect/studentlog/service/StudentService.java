@@ -36,7 +36,7 @@ public class StudentService {
 
 				return studentDao.save(student);
 		} catch (Exception e){
-				System.out.println("exception ::::: " + e.getMessage());
+				//System.out.println("exception ::::: " + e.getMessage());
 				throw e;
 		}
 	}
@@ -62,10 +62,9 @@ public class StudentService {
 		student.setPassword(studentBean.getPassword());
 	}
 	public StudentEntity authenticate(String username, String password) {
-        // Retrieve the user from the database based on the provided username
-		Optional<StudentEntity> optionalUser = studentDao.findByEmailIgnoreCase(username);
+		Optional<StudentEntity> optionalUser = studentDao.findByUserName(username);
+		System.out.println(optionalUser);
 
-        // Check if the user exists and if the password matches
         if (optionalUser.isPresent()) {
             StudentEntity user = optionalUser.get();
             if (user.getPassword().equals(password)) {

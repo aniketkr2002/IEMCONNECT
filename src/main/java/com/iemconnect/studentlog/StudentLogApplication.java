@@ -1,6 +1,7 @@
 package com.iemconnect.studentlog;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -48,7 +49,7 @@ public class StudentLogApplication implements CommandLineRunner {
 		for (int i = 1; i <= 10; i++) {
 		    Student student = new Student();
 		    student.setName("Name" + i);
-		    student.setUserName("User" + i);
+		    student.setUserName("user" + i);
 		    student.setEnrollment("Enrollment" + i); // Using a consistent format for enrollment
 		    student.setPassword("Password" + i);
 		    student.setBranch("Branch" + i);
@@ -68,9 +69,20 @@ public class StudentLogApplication implements CommandLineRunner {
 	            product.setProductName("Product " + i);
 	            product.setDescription("Description for Product " + i);
 	            product.setPrice("Price " + i);
-	            product.setImages(new byte[]{1,1,2,2,2});
+	            product.setImages(new byte[] {1,2,2});
 	            productService.addProduct(product);
-	        }		  
+	        }		 
+		   
+		   for (int i = 1; i <= 20; i++) {
+	            Product product = new Product();
+	            product.setUserName("user" + i);
+	            product.setContactNo("ContactNo" + i);
+	            product.setProductName("Product " + i);
+	            product.setDescription("Description for Product " + i);
+	            product.setPrice("Price " + i);
+	            product.setImages(new byte[] {});
+	            productService.addProduct(product);
+	        }	
 			 
 	}
 

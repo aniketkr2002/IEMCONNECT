@@ -44,10 +44,12 @@ public class Student {
 	private String branch;
 	
 	@NotBlank(message = "Password is required")
-	//@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$",message = " password to contain at least one letter, one digit, and be at least 6 characters long")
-	@Column(nullable=false)
-	@Size(min=5,message = "password to contain at least one letter, one digit, and be at least 6 characters long")
+//	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$",message = " password to contain at least one letter, one digit, and be at least 6 characters long")
+//	@Column(nullable=false)
+//	@Size(min=5,message = "password to contain at least one letter, one digit, and be at least 6 characters long")
 	private String password;
+	
+	
 	public String getUserName() {
 		return userName;
 	}

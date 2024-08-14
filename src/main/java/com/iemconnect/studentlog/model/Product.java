@@ -37,21 +37,22 @@ public class Product {
     @NotNull(message = "price of product is required")
     private String price;
 
-    @Lob
-    private byte[] images;
+     @Lob
+      private byte[] images;
+    //  private String images;
 
     // No-argument constructor
     public Product() {
     }
 
     // Constructor with arguments
-    public Product(String userName, String contactNo, String productName, String description, String price, byte[] images) {
+    public Product(String userName, String contactNo, String productName, String description, String price,byte[] images) {
         this.userName = userName;
         this.contactNo = contactNo;
         this.productName = productName;
         this.description = description;
         this.price = price;
-        this.images = images;
+        this.images=images;
     }
 
     // Getters and setters
@@ -110,4 +111,12 @@ public class Product {
     public void setImages(byte[] images) {
         this.images = images;
     }
+
+//	public String getImages() {
+//		return images;
+//	}
+//
+//	public void setImages(String images) {
+//		this.images = images;
+//	}
 }
