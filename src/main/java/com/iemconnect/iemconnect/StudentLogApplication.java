@@ -5,7 +5,6 @@ package com.iemconnect.iemconnect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.iemconnect.iemconnect.model.College;
@@ -14,14 +13,14 @@ import com.iemconnect.iemconnect.model.Student;
 import com.iemconnect.iemconnect.service.CollegeService;
 import com.iemconnect.iemconnect.service.ProductService;
 import com.iemconnect.iemconnect.service.StudentService;
-@EnableAutoConfiguration
+
 @SpringBootApplication
 public class StudentLogApplication implements CommandLineRunner {
 	
 	@Autowired
 	private CollegeService collegeService;
 	
-	@Autowired
+	@Autowired	
 	private ProductService productService;
 	@Autowired
 	private StudentService studentService;

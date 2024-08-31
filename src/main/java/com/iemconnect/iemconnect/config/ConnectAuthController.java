@@ -19,6 +19,7 @@ import com.iemconnect.iemconnect.model.LoginPage;
 import com.iemconnect.iemconnect.security.ConnectJWTHelper;
 
 @RestController
+@CrossOrigin(origins = {"http://192.168.1.2", "http://localhost:5173"}, allowCredentials = "true")
 @RequestMapping("/auth")
 public class ConnectAuthController {
     @Autowired
@@ -29,7 +30,6 @@ public class ConnectAuthController {
 
     @Autowired
     private ConnectJWTHelper helper;
-//
     private Logger logger = LoggerFactory.getLogger(ConnectAuthController.class);
 
     @PostMapping("/login")

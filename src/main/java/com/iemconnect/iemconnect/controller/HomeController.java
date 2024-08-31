@@ -7,6 +7,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,9 +23,11 @@ import com.iemconnect.iemconnect.model.StudentCreditScore;
 import com.iemconnect.iemconnect.service.PostService;
 import com.iemconnect.iemconnect.service.ProductService;
 import com.iemconnect.iemconnect.service.StudentCreditScoreService;
+import com.iemconnect.iemconnect.util.Message;
+
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
 @RequestMapping("/home")
 public class HomeController {
 
@@ -97,7 +104,7 @@ public class HomeController {
 
     // POST APIs for Products
 
-    @PostMapping("/products")
+    @PostMapping("add/products")
     public ResponseEntity<String> addProduct(
             @RequestParam("userName") String userName,
             @RequestParam("contactNo") String contactNo,
@@ -174,5 +181,21 @@ public class HomeController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
+    }
+
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
+
+    @MessageMapping("/message")
+    @SendTo("/chatroom/public")
+    public Message receiveMessage(@Payload Message message){
+        return message;
+    }
+
+    @MessageMapping("/private-message")
+    public Message recMessage(@Payload Message message){
+        simpMessagingTemplate.convertAndSendToUser(message.getReceiverName(),"/private",message);
+        System.out.println(message.toString());
+        return message;
     }
 }

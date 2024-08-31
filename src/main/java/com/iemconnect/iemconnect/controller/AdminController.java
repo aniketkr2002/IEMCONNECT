@@ -16,6 +16,7 @@ import com.iemconnect.iemconnect.service.CollegeService;
 import com.iemconnect.iemconnect.service.StudentService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173",allowCredentials = "true")
 @RequestMapping(value = "/admin")
 public class AdminController {
 	@Autowired

@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
 
 import com.iemconnect.iemconnect.security.ConnectJWTAuthEntryPoint;
 import com.iemconnect.iemconnect.security.ConnectJWTAuthFilter;
@@ -25,12 +26,20 @@ public class ConnectSecurityConfig {
                     .cors(cors -> cors.disable())
                     .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/college/*").authenticated()
-                        .requestMatchers("/home/**").authenticated()
+                        .requestMatchers("/home/****").permitAll()
                         .requestMatchers("/auth/login").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/ws/**").permitAll()
+                        .anyRequest().permitAll()
                     )
                     .exceptionHandling(i -> i.authenticationEntryPoint(connectJWTAuthEntryPoint))
-                    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    .logout(logout -> logout
+                            .logoutUrl("/auth/logout")
+                            .logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler()) 
+                            .invalidateHttpSession(true) 
+                            .deleteCookies("JSESSIONID") 
+                    );
                     
         httpSecurity.addFilterBefore(connectJWTAuthFilter, UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
